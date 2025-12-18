@@ -11,6 +11,7 @@ services:
     environment:
       - DATABASE_URL=sqlite:///./data/minephone.db
       # --- CẤU HÌNH AI CHATBOT ---
+      - BASE_URL_CHATBOT=${BASE_URL_CHATBOT:-https://openrouter.ai/api/v1} 
       - OPENROUTER_API_KEY=${OPENROUTER_API_KEY} 
       - OPENROUTER_MODEL=${OPENROUTER_MODEL:-arcee-ai/trinity-mini:free}
       - CHATBOT_PROMPT="Bạn là nhân viên tư vấn nhiệt tình của MinePhone. Dưới đây là danh sách sản phẩm hiện có. Hãy tư vấn dựa trên dữ liệu này. Nếu không có thông tin, hãy nói khéo là chưa rõ. Luôn trả lời ngắn gọn, thân thiện bằng tiếng Việt."

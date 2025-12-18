@@ -308,7 +308,7 @@ def seed_data(db: Session = Depends(get_db)):
 
 # --- SETUP OPENROUTER CLIENT ---
 client = OpenAI(
-    base_url="https://openrouter.ai/api/v1",
+    base_url=os.getenv("BASE_URL_CHATBOT", "https://openrouter.ai/api/v1"),
     api_key=os.getenv("OPENROUTER_API_KEY"),
 )
 

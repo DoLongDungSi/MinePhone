@@ -49,20 +49,23 @@ const ProductModal: React.FC<Props> = ({ isOpen, onClose, onSuccess, productToEd
         }
     }, [productToEdit, isOpen]);
 
-    // --- HÀM UPLOAD ẢNH MỚI ---
+// --- HÀM UPLOAD ẢNH MỚI ---
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
 
         setUploading(true);
-        const data = new FormData();
-        data.append('file', file);
+        // LỖI CŨ: const data = new FormData(); data.append('file', file);
+        // KHẮC PHỤC: Không tạo FormData ở đây nữa, truyền thẳng file
 
         try {
-            // Gọi API upload của backend
-            const res = await uploadImage(data);
-            // Backend trả về { "url": "http://..." }
-            setFormData(prev => ({ ...prev, image: res.url }));
+            // Gọi API upload của backend (truyền trực tiếp file)
+            const imageUrl = await uploadImage(file); 
+            
+            // LỖI CŨ: image: res.url (vì api.ts đã trả về url rồi, không cần .url nữa)
+            // KHẮC PHỤC: Gán trực tiếp kết quả trả về
+            setFormData(prev => ({ ...prev, image: imageUrl }));
+            
             Toastify({ text: "📸 Upload ảnh thành công!", style: { background: "green" } }).showToast();
         } catch (error) {
             console.error(error);
