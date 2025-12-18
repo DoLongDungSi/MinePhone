@@ -1,0 +1,10 @@
+node_modules
+distdist-ssr
+.git
+.gitignore
+.env
+.localnpm-debug
+.logyarn-debug
+.log
+*yarn-error
+.log*
