@@ -1,6 +1,5 @@
 .log
 node_modules/
-.env
 *.db
 *.pyc
 pycache/
